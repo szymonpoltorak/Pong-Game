@@ -1,0 +1,14 @@
+*.markdown text diff=markdown
+*.md text diff=markdown
+
+*.txt text
+
+*.css text diff=css
+*.html text diff=html
+*.js text diff=js
+*.ts text
+*.json text diff=json
+
+*.png binary
+*.jpeg binary
+*.jpg binary
