@@ -1,10 +1,5 @@
 export interface Player {
     changePosition(positionX : number, positionY : number) : void;
-    getHeight() : number;
-    getWidth() : number;
-    getColor() : string;
-    getPositionX() : number;
-    getPositionY() : number;
 }
 
 export class Paddle implements Player{
@@ -14,11 +9,12 @@ export class Paddle implements Player{
     private positionX : number;
     private positionY : number;
 
-    public constructor(color, width, height, positionX, positionY) {
+    public constructor(color : string, width : number, height : number, positionX : number, positionY : number) {
         this.height = height;
         this.color = color;
         this.positionX = positionX;
         this.positionY = positionY;
+        this.width = width;
     }
 
     public changePosition(positionX: number, positionY: number): void {

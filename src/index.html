@@ -4,10 +4,13 @@
     <head>
         <meta charset="UTF-8">
         <title>Pong Game</title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <link rel="stylesheet" type="text/css" href="style.css">
-        <script src="./src/js/main.js" defer></script>
+
+        <script type="module" src="js/GameBoard.js" defer></script>
+        <script type="module" src="js/Paddle.js" defer></script>
+        <script type="module" src="js/main.js" defer></script>
     </head>
 
     <body>
@@ -17,7 +20,7 @@
         </header>
 
         <main class="gameBoardContainer">
-            <canvas class="gameBoard"></canvas>
+            <canvas class="gameBoard" width="600" height="500"></canvas>
             <button class="resetButton" type="button">Reset</button>
         </main>
     </body>
