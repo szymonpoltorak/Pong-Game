@@ -1,7 +1,8 @@
 import { GameBoard } from "./GameBoard.js";
 import { Paddle } from "./Paddle.js";
-import { PaddleColor, Sizes } from "./PaddleSettings.js";
+import { PaddleColor, PaddleUtils } from "./PaddleSettings.js";
 import { Ball } from "./Ball.js";
+import { Handler } from "./Handler.js";
 var gameBoardId = document.querySelector(".gameBoard");
 if (gameBoardId === null) {
     throw new Error("Game Board Id is null");
@@ -11,9 +12,17 @@ if (context === null) {
     throw new Error("Context is null");
 }
 var gameBoard = new GameBoard(gameBoardId, context);
-var leftPlayer = new Paddle(PaddleColor.LEFT_COLOR, Sizes.WIDTH, Sizes.HEIGHT, Sizes.LEFT_X, Sizes.LEFT_Y);
-var rightPlayer = new Paddle(PaddleColor.RIGHT_COLOR, Sizes.WIDTH, Sizes.HEIGHT, Sizes.RIGHT_X, Sizes.RIGHT_Y);
+var leftPlayer = new Paddle(PaddleColor.LEFT_COLOR, PaddleUtils.WIDTH, PaddleUtils.HEIGHT, PaddleUtils.LEFT_X, PaddleUtils.LEFT_Y);
+var rightPlayer = new Paddle(PaddleColor.RIGHT_COLOR, PaddleUtils.WIDTH, PaddleUtils.HEIGHT, PaddleUtils.RIGHT_X, PaddleUtils.RIGHT_Y);
 var gameBall = new Ball(gameBoard);
 gameBoard.drawPlayerPaddles(leftPlayer, rightPlayer);
 gameBoard.drawBallOnBoard(gameBall);
+window.addEventListener("keydown", function (event) {
+    var pressedKey = event.key;
+    var handler = new Handler();
+    handler.handleUserMove(pressedKey, gameBoard, leftPlayer, rightPlayer, gameBall);
+    gameBoard.clearGameBoard();
+    gameBoard.drawPlayerPaddles(leftPlayer, rightPlayer);
+    gameBoard.drawBallOnBoard(gameBall);
+});
 //# sourceMappingURL=main.js.map

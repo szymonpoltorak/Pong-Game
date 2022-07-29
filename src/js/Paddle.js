@@ -6,10 +6,6 @@ var Paddle = /** @class */ (function () {
         this.positionY = positionY;
         this.width = width;
     }
-    Paddle.prototype.changePosition = function (positionX, positionY) {
-        this.positionX = positionX;
-        this.positionY = positionY;
-    };
     Paddle.prototype.getHeight = function () {
         return this.height;
     };
@@ -24,6 +20,9 @@ var Paddle = /** @class */ (function () {
     };
     Paddle.prototype.getPositionY = function () {
         return this.positionY;
+    };
+    Paddle.prototype.setPositionY = function (changePositionValue) {
+        this.positionY += changePositionValue;
     };
     return Paddle;
 }());

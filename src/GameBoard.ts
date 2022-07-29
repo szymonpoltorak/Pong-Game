@@ -2,6 +2,7 @@ import {Paddle} from "./Paddle.js";
 import {PaddleColor} from "./PaddleSettings.js";
 import {Ball} from "./Ball.js";
 import {BallColors, BallSizes} from "./BallSettings.js";
+import {BoardDefaults} from "./BoardDefaults.js";
 
 export interface PongBoard {
     clearGameBoard(): void;
@@ -11,7 +12,7 @@ export interface PongBoard {
 
 export class GameBoard implements PongBoard {
     private gameBoardId: HTMLCanvasElement;
-    private context: CanvasRenderingContext2D;
+    private readonly context: CanvasRenderingContext2D;
     private readonly width: number;
     private readonly height: number;
 
@@ -34,7 +35,7 @@ export class GameBoard implements PongBoard {
         this.context.strokeRect(rightPlayer.getPositionX(), rightPlayer.getPositionY(), rightPlayer.getWidth(), rightPlayer.getHeight());
     }
 
-    public drawBallOnBoard(ball : Ball) : void {
+    public drawBallOnBoard(ball: Ball): void {
         this.context.fillStyle = BallColors.BALL_COLOR;
         this.context.strokeStyle = BallColors.BORDER_COLOR;
         this.context.lineWidth = BallSizes.BORDER_LINE_WIDTH;
@@ -45,14 +46,19 @@ export class GameBoard implements PongBoard {
     }
 
     public clearGameBoard(): void {
-
+        this.context.fillStyle = BoardDefaults.BACKGROUND_COLOR;
+        this.context.fillRect(BoardDefaults.BOARD_X, BoardDefaults.BOARD_Y, BoardDefaults.BOARD_WIDTH, BoardDefaults.BOARD_HEIGHT);
     }
 
-    public getWidth() : number{
+    public getWidth(): number {
         return this.width;
     }
 
-    public getHeight() : number {
+    public getHeight(): number {
         return this.height;
+    }
+
+    public getContext(): CanvasRenderingContext2D {
+        return this.context;
     }
 }

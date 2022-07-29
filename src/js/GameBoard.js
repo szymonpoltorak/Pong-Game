@@ -1,5 +1,6 @@
 import { PaddleColor } from "./PaddleSettings.js";
 import { BallColors, BallSizes } from "./BallSettings.js";
+import { BoardDefaults } from "./BoardDefaults.js";
 var GameBoard = /** @class */ (function () {
     function GameBoard(gameBoardId, context) {
         this.gameBoardId = gameBoardId;
@@ -25,12 +26,17 @@ var GameBoard = /** @class */ (function () {
         this.context.fill();
     };
     GameBoard.prototype.clearGameBoard = function () {
+        this.context.fillStyle = BoardDefaults.BACKGROUND_COLOR;
+        this.context.fillRect(BoardDefaults.BOARD_X, BoardDefaults.BOARD_Y, BoardDefaults.BOARD_WIDTH, BoardDefaults.BOARD_HEIGHT);
     };
     GameBoard.prototype.getWidth = function () {
         return this.width;
     };
     GameBoard.prototype.getHeight = function () {
         return this.height;
+    };
+    GameBoard.prototype.getContext = function () {
+        return this.context;
     };
     return GameBoard;
 }());
