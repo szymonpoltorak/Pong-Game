@@ -12,6 +12,7 @@ export class GameLoader {
             gameBoard.drawPlayerPaddles(leftPlayer, rightPlayer);
             gameBall.moveBall();
             gameBoard.drawBallOnBoard(gameBall);
+            gameBall.checkBallsCollision(gameBoard, leftPlayer, rightPlayer);
             GameLoader.loadGame(gameBoard, leftPlayer, rightPlayer, gameBall);
         }, 12);
     }

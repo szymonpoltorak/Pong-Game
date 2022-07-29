@@ -1,3 +1,4 @@
+import { BallSizes } from "./BallSettings.js";
 var Ball = /** @class */ (function () {
     function Ball(gameBoard) {
         this.directionY = 0;
@@ -6,31 +7,40 @@ var Ball = /** @class */ (function () {
         this.positionY = gameBoard.getHeight() / 2;
         this.ballsSpeed = 1;
     }
-    Ball.prototype.changeBallsDirection = function (directionX, directionY) {
-        this.directionX = directionX;
-        this.directionY = directionY;
+    Ball.prototype.checkBallsCollision = function (gameBoard, leftPlayer, rightPlayer) {
+        if (this.positionY <= BallSizes.RADIUS || this.positionY >= gameBoard.getHeight() - BallSizes.RADIUS) {
+            this.directionY *= -1;
+        }
+        this.handleHittingLeftPlayer(leftPlayer);
+        this.handleHittingRightPlayer(rightPlayer);
     };
-    Ball.prototype.checkBallsCollision = function () {
+    Ball.prototype.handleHittingLeftPlayer = function (leftPlayer) {
+        var leftPlayerAreaX = leftPlayer.getPositionX() + leftPlayer.getWidth() + BallSizes.RADIUS;
+        var leftPlayerAreaY = leftPlayer.getPositionY() + leftPlayer.getHeight();
+        if (this.positionX <= leftPlayerAreaX && this.positionY > leftPlayer.getPositionY() && this.positionY < leftPlayerAreaY) {
+            this.positionX = leftPlayer.getPositionX() + leftPlayer.getWidth() + BallSizes.RADIUS;
+            this.directionX *= -1;
+            this.ballsSpeed++;
+        }
+    };
+    Ball.prototype.handleHittingRightPlayer = function (rightPlayer) {
+        var rightPlayerAreaX = rightPlayer.getPositionX() - BallSizes.RADIUS;
+        var rightPlayerAreaY = rightPlayer.getPositionY() + rightPlayer.getHeight();
+        if (this.positionX >= rightPlayerAreaX && this.positionY > rightPlayer.getPositionY() && this.positionY < rightPlayerAreaY) {
+            this.positionX = rightPlayer.getPositionX() - BallSizes.RADIUS;
+            this.directionX *= -1;
+            this.ballsSpeed++;
+        }
     };
     Ball.prototype.moveBall = function () {
         this.positionX += (this.ballsSpeed * this.directionX);
         this.positionY += (this.ballsSpeed * this.directionY);
-    };
-    Ball.prototype.changeActualBallPosition = function (positionX, positionY) {
-        this.positionX = positionX;
-        this.positionY = positionY;
     };
     Ball.prototype.getPositionX = function () {
         return this.positionX;
     };
     Ball.prototype.getPositionY = function () {
         return this.positionY;
-    };
-    Ball.prototype.getDirectionX = function () {
-        return this.directionX;
-    };
-    Ball.prototype.getDirectionY = function () {
-        return this.directionY;
     };
     Ball.prototype.setDirectionX = function (direction) {
         this.directionX = direction;
