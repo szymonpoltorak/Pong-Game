@@ -19,8 +19,14 @@ var rightPlayer = new Paddle(PaddleColor.RIGHT_COLOR, PaddleUtils.WIDTH, PaddleU
 var gameBall = new Ball(gameBoard);
 var scoreCounter = new ScoreCounter();
 var intervalStarter = 0;
-GameLoader.insertBall(gameBall, gameBoard);
-GameLoader.loadGame(gameBoard, leftPlayer, rightPlayer, gameBall, scoreCounter, intervalStarter);
+var startButton = document.querySelector(".startButton");
+if (startButton === null) {
+    throw new Error("Start button is null");
+}
+startButton.addEventListener("click", function () {
+    GameLoader.insertBall(gameBall, gameBoard);
+    GameLoader.loadGame(gameBoard, leftPlayer, rightPlayer, gameBall, scoreCounter, intervalStarter);
+});
 window.addEventListener("keydown", function (event) {
     var pressedKey = event.key;
     var handler = new Handler();
