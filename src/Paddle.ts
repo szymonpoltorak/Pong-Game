@@ -1,15 +1,15 @@
 export interface Player {
-    changePosition(positionX : number, positionY : number) : void;
+    changePosition(positionX: number, positionY: number): void;
 }
 
-export class Paddle implements Player{
-    private readonly color : string;
-    private readonly width : number;
-    private readonly height : number;
-    private positionX : number;
-    private positionY : number;
+export class Paddle implements Player {
+    private readonly color: string;
+    private readonly width: number;
+    private readonly height: number;
+    private positionX: number;
+    private positionY: number;
 
-    public constructor(color : string, width : number, height : number, positionX : number, positionY : number) {
+    public constructor(color: string, width: number, height: number, positionX: number, positionY: number) {
         this.height = height;
         this.color = color;
         this.positionX = positionX;
@@ -22,23 +22,23 @@ export class Paddle implements Player{
         this.positionY = positionY;
     }
 
-    public getHeight(){
+    public getHeight(): number {
         return this.height;
     }
 
-    public getColor(){
+    public getColor(): string {
         return this.color;
     }
 
-    public getWidth(){
+    public getWidth(): number {
         return this.width;
     }
 
-    public getPositionX(){
+    public getPositionX(): number {
         return this.positionX;
     }
 
-    public getPositionY(){
+    public getPositionY(): number {
         return this.positionY;
     }
 }

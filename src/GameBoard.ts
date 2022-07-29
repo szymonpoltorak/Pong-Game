@@ -1,5 +1,7 @@
 import {Paddle} from "./Paddle.js";
 import {PaddleColor} from "./PaddleSettings.js";
+import {Ball} from "./Ball.js";
+import {BallColors, BallSizes} from "./BallSettings.js";
 
 export interface PongBoard {
     clearGameBoard(): void;
@@ -20,10 +22,6 @@ export class GameBoard implements PongBoard {
         this.height = gameBoardId.height;
     }
 
-    public clearGameBoard(): void {
-
-    }
-
     public drawPlayerPaddles(leftPlayer: Paddle, rightPlayer: Paddle): void {
         this.context.strokeStyle = PaddleColor.BORDER_COLOR;
 
@@ -36,11 +34,25 @@ export class GameBoard implements PongBoard {
         this.context.strokeRect(rightPlayer.getPositionX(), rightPlayer.getPositionY(), rightPlayer.getWidth(), rightPlayer.getHeight());
     }
 
-    public getWidth() {
+    public drawBallOnBoard(ball : Ball) : void {
+        this.context.fillStyle = BallColors.BALL_COLOR;
+        this.context.strokeStyle = BallColors.BORDER_COLOR;
+        this.context.lineWidth = BallSizes.BORDER_LINE_WIDTH;
+
+        this.context.arc(ball.getPositionX(), ball.getPositionY(), BallSizes.RADIUS, BallSizes.START_ANGLE, BallSizes.END_ANGLE);
+        this.context.stroke();
+        this.context.fill();
+    }
+
+    public clearGameBoard(): void {
+
+    }
+
+    public getWidth() : number{
         return this.width;
     }
 
-    public getHeight() {
+    public getHeight() : number {
         return this.height;
     }
 }
