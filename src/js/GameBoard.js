@@ -21,6 +21,7 @@ var GameBoard = /** @class */ (function () {
         this.context.fillStyle = BallColors.BALL_COLOR;
         this.context.strokeStyle = BallColors.BORDER_COLOR;
         this.context.lineWidth = BallSizes.BORDER_LINE_WIDTH;
+        this.context.beginPath();
         this.context.arc(ball.getPositionX(), ball.getPositionY(), BallSizes.RADIUS, BallSizes.START_ANGLE, BallSizes.END_ANGLE);
         this.context.stroke();
         this.context.fill();

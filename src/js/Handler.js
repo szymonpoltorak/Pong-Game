@@ -2,7 +2,7 @@ import { DirectionKeys, PaddleUtils } from "./PaddleSettings.js";
 var Handler = /** @class */ (function () {
     function Handler() {
     }
-    Handler.prototype.handleUserMove = function (pressedKey, gameBoard, leftPlayer, rightPlayer, gameBall) {
+    Handler.prototype.handleUserMove = function (pressedKey, gameBoard, leftPlayer, rightPlayer) {
         if (pressedKey == DirectionKeys.LEFT_PLAYER_UP) {
             this.checkUpperKey(leftPlayer);
         }

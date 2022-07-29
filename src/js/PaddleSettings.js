@@ -20,9 +20,9 @@ export var PaddleColor;
 })(PaddleColor || (PaddleColor = {}));
 export var DirectionKeys;
 (function (DirectionKeys) {
-    DirectionKeys["LEFT_PLAYER_UP"] = "ArrowUp";
-    DirectionKeys["LEFT_PLAYER_DOWN"] = "ArrowDown";
-    DirectionKeys["RIGHT_PLAYER_UP"] = "w";
-    DirectionKeys["RIGHT_PLAYER_DOWN"] = "s";
+    DirectionKeys["LEFT_PLAYER_UP"] = "w";
+    DirectionKeys["LEFT_PLAYER_DOWN"] = "s";
+    DirectionKeys["RIGHT_PLAYER_UP"] = "ArrowUp";
+    DirectionKeys["RIGHT_PLAYER_DOWN"] = "ArrowDown";
 })(DirectionKeys || (DirectionKeys = {}));
 //# sourceMappingURL=PaddleSettings.js.map

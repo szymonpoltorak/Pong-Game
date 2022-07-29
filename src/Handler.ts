@@ -1,13 +1,12 @@
 import {GameBoard} from "./GameBoard.js";
 import {DirectionKeys, PaddleUtils} from "./PaddleSettings.js";
 import {Paddle} from "./Paddle.js";
-import {Ball} from "./Ball.js";
 
 export class Handler {
     public constructor() {
     }
 
-    public handleUserMove(pressedKey: string, gameBoard: GameBoard, leftPlayer: Paddle, rightPlayer: Paddle, gameBall: Ball) {
+    public handleUserMove(pressedKey: string, gameBoard: GameBoard, leftPlayer: Paddle, rightPlayer: Paddle) {
         if (pressedKey == DirectionKeys.LEFT_PLAYER_UP) {
             this.checkUpperKey(leftPlayer);
         }

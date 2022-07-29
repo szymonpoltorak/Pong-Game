@@ -1,8 +1,9 @@
 import {GameBoard} from "./GameBoard.js";
 import {Paddle} from "./Paddle.js";
-import {DirectionKeys, PaddleColor, PaddleUtils} from "./PaddleSettings.js";
+import {PaddleColor, PaddleUtils} from "./PaddleSettings.js";
 import {Ball} from "./Ball.js";
 import {Handler} from "./Handler.js";
+import {GameLoader} from "./GameLoader.js";
 
 const gameBoardId: HTMLCanvasElement | null = document.querySelector(".gameBoard");
 
@@ -21,16 +22,12 @@ let leftPlayer = new Paddle(PaddleColor.LEFT_COLOR, PaddleUtils.WIDTH, PaddleUti
 let rightPlayer = new Paddle(PaddleColor.RIGHT_COLOR, PaddleUtils.WIDTH, PaddleUtils.HEIGHT, PaddleUtils.RIGHT_X, PaddleUtils.RIGHT_Y);
 let gameBall = new Ball(gameBoard);
 
-gameBoard.drawPlayerPaddles(leftPlayer, rightPlayer);
-gameBoard.drawBallOnBoard(gameBall);
+GameLoader.insertBall(gameBall, gameBoard);
+GameLoader.loadGame(gameBoard, leftPlayer, rightPlayer, gameBall);
 
 window.addEventListener("keydown", event => {
     const pressedKey: string = event.key;
     const handler = new Handler();
 
-    handler.handleUserMove(pressedKey, gameBoard, leftPlayer, rightPlayer, gameBall);
-
-    gameBoard.clearGameBoard();
-    gameBoard.drawPlayerPaddles(leftPlayer, rightPlayer);
-    gameBoard.drawBallOnBoard(gameBall);
+    handler.handleUserMove(pressedKey, gameBoard, leftPlayer, rightPlayer);
 });

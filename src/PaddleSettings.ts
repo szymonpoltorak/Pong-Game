@@ -21,9 +21,9 @@ export enum PaddleColor {
 }
 
 export enum DirectionKeys{
-    LEFT_PLAYER_UP = "ArrowUp",
-    LEFT_PLAYER_DOWN = "ArrowDown",
-    RIGHT_PLAYER_UP = "w",
-    RIGHT_PLAYER_DOWN= "s"
+    LEFT_PLAYER_UP = "w",
+    LEFT_PLAYER_DOWN = "s",
+    RIGHT_PLAYER_UP = "ArrowUp",
+    RIGHT_PLAYER_DOWN= "ArrowDown"
 }
 
