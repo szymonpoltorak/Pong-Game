@@ -7,15 +7,15 @@ export class GameLoader {
     private constructor() {
     }
 
-    public static loadGame(gameBoard: GameBoard, leftPlayer: Paddle, rightPlayer: Paddle, gameBall: Ball, scoreCounter: ScoreCounter): void {
-        let intervalStarter = setTimeout(() => {
+    public static loadGame(gameBoard: GameBoard, leftPlayer: Paddle, rightPlayer: Paddle, gameBall: Ball, scoreCounter: ScoreCounter, intervalStarter: number): void {
+        intervalStarter = setTimeout(() => {
             gameBoard.clearGameBoard();
             gameBoard.drawPlayerPaddles(leftPlayer, rightPlayer);
             gameBall.moveBall();
             gameBoard.drawBallOnBoard(gameBall);
             gameBall.checkBallsCollision(gameBoard, leftPlayer, rightPlayer, scoreCounter);
-            GameLoader.loadGame(gameBoard, leftPlayer, rightPlayer, gameBall, scoreCounter);
-        }, 12);
+            GameLoader.loadGame(gameBoard, leftPlayer, rightPlayer, gameBall, scoreCounter, intervalStarter);
+        }, 10);
     }
 
     public static insertBall(ball: Ball, gameBoard: GameBoard): void {

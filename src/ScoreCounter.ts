@@ -15,11 +15,6 @@ export class ScoreCounter {
         this.rightPlayerScore++;
     }
 
-    public resetScores(): void {
-        this.leftPlayerScore = 0;
-        this.rightPlayerScore = 0;
-    }
-
     public updateDisplayedScore(): void {
         const scoreLabel = document.querySelector(".score");
 

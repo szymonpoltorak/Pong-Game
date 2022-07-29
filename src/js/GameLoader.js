@@ -1,15 +1,15 @@
 var GameLoader = /** @class */ (function () {
     function GameLoader() {
     }
-    GameLoader.loadGame = function (gameBoard, leftPlayer, rightPlayer, gameBall, scoreCounter) {
-        var intervalStarter = setTimeout(function () {
+    GameLoader.loadGame = function (gameBoard, leftPlayer, rightPlayer, gameBall, scoreCounter, intervalStarter) {
+        intervalStarter = setTimeout(function () {
             gameBoard.clearGameBoard();
             gameBoard.drawPlayerPaddles(leftPlayer, rightPlayer);
             gameBall.moveBall();
             gameBoard.drawBallOnBoard(gameBall);
             gameBall.checkBallsCollision(gameBoard, leftPlayer, rightPlayer, scoreCounter);
-            GameLoader.loadGame(gameBoard, leftPlayer, rightPlayer, gameBall, scoreCounter);
-        }, 12);
+            GameLoader.loadGame(gameBoard, leftPlayer, rightPlayer, gameBall, scoreCounter, intervalStarter);
+        }, 10);
     };
     GameLoader.insertBall = function (ball, gameBoard) {
         if (Math.round(Math.random()) == 1) {

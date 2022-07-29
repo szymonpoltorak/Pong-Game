@@ -11,7 +11,7 @@ export interface PongBoard {
 }
 
 export class GameBoard implements PongBoard {
-    private gameBoardId: HTMLCanvasElement;
+    private readonly gameBoardId: HTMLCanvasElement;
     private readonly context: CanvasRenderingContext2D;
     private readonly width: number;
     private readonly height: number;
@@ -57,9 +57,5 @@ export class GameBoard implements PongBoard {
 
     public getHeight(): number {
         return this.height;
-    }
-
-    public getContext(): CanvasRenderingContext2D {
-        return this.context;
     }
 }

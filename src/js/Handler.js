@@ -26,6 +26,9 @@ var Handler = /** @class */ (function () {
             player.setPositionY(PaddleUtils.PADDLE_SPEED);
         }
     };
+    Handler.prototype.resetGame = function () {
+        window.location.reload();
+    };
     return Handler;
 }());
 export { Handler };

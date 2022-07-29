@@ -36,9 +36,6 @@ var GameBoard = /** @class */ (function () {
     GameBoard.prototype.getHeight = function () {
         return this.height;
     };
-    GameBoard.prototype.getContext = function () {
-        return this.context;
-    };
     return GameBoard;
 }());
 export { GameBoard };

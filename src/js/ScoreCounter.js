@@ -9,10 +9,6 @@ var ScoreCounter = /** @class */ (function () {
     ScoreCounter.prototype.increaseRightPlayerScore = function () {
         this.rightPlayerScore++;
     };
-    ScoreCounter.prototype.resetScores = function () {
-        this.leftPlayerScore = 0;
-        this.rightPlayerScore = 0;
-    };
     ScoreCounter.prototype.updateDisplayedScore = function () {
         var scoreLabel = document.querySelector(".score");
         if (scoreLabel === null) {

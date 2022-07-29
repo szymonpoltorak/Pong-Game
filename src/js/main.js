@@ -18,11 +18,20 @@ var leftPlayer = new Paddle(PaddleColor.LEFT_COLOR, PaddleUtils.WIDTH, PaddleUti
 var rightPlayer = new Paddle(PaddleColor.RIGHT_COLOR, PaddleUtils.WIDTH, PaddleUtils.HEIGHT, PaddleUtils.RIGHT_X, PaddleUtils.RIGHT_Y);
 var gameBall = new Ball(gameBoard);
 var scoreCounter = new ScoreCounter();
+var intervalStarter = 0;
 GameLoader.insertBall(gameBall, gameBoard);
-GameLoader.loadGame(gameBoard, leftPlayer, rightPlayer, gameBall, scoreCounter);
+GameLoader.loadGame(gameBoard, leftPlayer, rightPlayer, gameBall, scoreCounter, intervalStarter);
 window.addEventListener("keydown", function (event) {
     var pressedKey = event.key;
     var handler = new Handler();
     handler.handleUserMove(pressedKey, gameBoard, leftPlayer, rightPlayer);
+});
+var resetButton = document.querySelector(".resetButton");
+if (resetButton === null) {
+    throw new Error("Reset buttons is null");
+}
+resetButton.addEventListener("click", function () {
+    var handler = new Handler();
+    handler.resetGame();
 });
 //# sourceMappingURL=main.js.map

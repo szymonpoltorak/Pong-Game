@@ -32,4 +32,8 @@ export class Handler {
             player.setPositionY(PaddleUtils.PADDLE_SPEED);
         }
     }
+
+    public resetGame(){
+        window.location.reload();
+    }
 }

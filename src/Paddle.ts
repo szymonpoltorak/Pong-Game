@@ -2,7 +2,7 @@ export class Paddle {
     private readonly color: string;
     private readonly width: number;
     private readonly height: number;
-    private positionX: number;
+    private readonly positionX: number;
     private positionY: number;
 
     public constructor(color: string, width: number, height: number, positionX: number, positionY: number) {
