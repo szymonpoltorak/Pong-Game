@@ -1,4 +1,5 @@
 import { BallSizes } from "./BallSettings.js";
+import { GameLoader } from "./GameLoader.js";
 var Ball = /** @class */ (function () {
     function Ball(gameBoard) {
         this.directionY = 0;
@@ -7,9 +8,23 @@ var Ball = /** @class */ (function () {
         this.positionY = gameBoard.getHeight() / 2;
         this.ballsSpeed = 1;
     }
-    Ball.prototype.checkBallsCollision = function (gameBoard, leftPlayer, rightPlayer) {
+    Ball.prototype.checkBallsCollision = function (gameBoard, leftPlayer, rightPlayer, scoreCounter) {
         if (this.positionY <= BallSizes.RADIUS || this.positionY >= gameBoard.getHeight() - BallSizes.RADIUS) {
             this.directionY *= -1;
+        }
+        if (this.positionX <= 0) {
+            scoreCounter.increaseRightPlayerScore();
+            scoreCounter.updateDisplayedScore();
+            this.resetBall(gameBoard);
+            GameLoader.insertBall(this, gameBoard);
+            return;
+        }
+        if (this.positionX >= gameBoard.getWidth()) {
+            scoreCounter.increaseLeftPlayerScore();
+            scoreCounter.updateDisplayedScore();
+            this.resetBall(gameBoard);
+            GameLoader.insertBall(this, gameBoard);
+            return;
         }
         this.handleHittingLeftPlayer(leftPlayer);
         this.handleHittingRightPlayer(rightPlayer);
@@ -31,6 +46,11 @@ var Ball = /** @class */ (function () {
             this.directionX *= -1;
             this.ballsSpeed++;
         }
+    };
+    Ball.prototype.resetBall = function (gameBoard) {
+        this.positionX = gameBoard.getWidth() / 2;
+        this.positionY = gameBoard.getHeight() / 2;
+        this.ballsSpeed = 1;
     };
     Ball.prototype.moveBall = function () {
         this.positionX += (this.ballsSpeed * this.directionX);

@@ -1,6 +1,8 @@
 import {GameBoard} from "./GameBoard.js";
 import {BallSizes} from "./BallSettings.js";
 import {Paddle} from "./Paddle.js";
+import {ScoreCounter} from "./ScoreCounter.js";
+import {GameLoader} from "./GameLoader.js";
 
 export class Ball {
     private positionX: number;
@@ -17,10 +19,26 @@ export class Ball {
         this.ballsSpeed = 1;
     }
 
-    public checkBallsCollision(gameBoard: GameBoard, leftPlayer: Paddle, rightPlayer: Paddle): void {
+    public checkBallsCollision(gameBoard: GameBoard, leftPlayer: Paddle, rightPlayer: Paddle, scoreCounter: ScoreCounter): void {
         if (this.positionY <= BallSizes.RADIUS || this.positionY >= gameBoard.getHeight() - BallSizes.RADIUS){
             this.directionY *= -1;
         }
+
+        if (this.positionX <= 0){
+            scoreCounter.increaseRightPlayerScore();
+            scoreCounter.updateDisplayedScore();
+            this.resetBall(gameBoard);
+            GameLoader.insertBall(this, gameBoard);
+            return;
+        }
+        if (this.positionX >= gameBoard.getWidth()){
+            scoreCounter.increaseLeftPlayerScore();
+            scoreCounter.updateDisplayedScore();
+            this.resetBall(gameBoard);
+            GameLoader.insertBall(this, gameBoard);
+            return;
+        }
+
         this.handleHittingLeftPlayer(leftPlayer);
         this.handleHittingRightPlayer(rightPlayer);
     }
@@ -45,6 +63,12 @@ export class Ball {
             this.directionX *= -1;
             this.ballsSpeed++;
         }
+    }
+
+    public resetBall(gameBoard: GameBoard): void{
+        this.positionX = gameBoard.getWidth() / 2;
+        this.positionY = gameBoard.getHeight() / 2;
+        this.ballsSpeed = 1;
     }
 
     public moveBall(): void {

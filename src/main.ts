@@ -4,6 +4,7 @@ import {PaddleColor, PaddleUtils} from "./PaddleSettings.js";
 import {Ball} from "./Ball.js";
 import {Handler} from "./Handler.js";
 import {GameLoader} from "./GameLoader.js";
+import {ScoreCounter} from "./ScoreCounter.js";
 
 const gameBoardId: HTMLCanvasElement | null = document.querySelector(".gameBoard");
 
@@ -21,9 +22,10 @@ let gameBoard = new GameBoard(gameBoardId, context);
 let leftPlayer = new Paddle(PaddleColor.LEFT_COLOR, PaddleUtils.WIDTH, PaddleUtils.HEIGHT, PaddleUtils.LEFT_X, PaddleUtils.LEFT_Y);
 let rightPlayer = new Paddle(PaddleColor.RIGHT_COLOR, PaddleUtils.WIDTH, PaddleUtils.HEIGHT, PaddleUtils.RIGHT_X, PaddleUtils.RIGHT_Y);
 let gameBall = new Ball(gameBoard);
+const scoreCounter = new ScoreCounter();
 
 GameLoader.insertBall(gameBall, gameBoard);
-GameLoader.loadGame(gameBoard, leftPlayer, rightPlayer, gameBall);
+GameLoader.loadGame(gameBoard, leftPlayer, rightPlayer, gameBall, scoreCounter);
 
 window.addEventListener("keydown", event => {
     const pressedKey: string = event.key;

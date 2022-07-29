@@ -1,19 +1,20 @@
 import {GameBoard} from "./GameBoard.js";
 import {Ball} from "./Ball.js";
 import {Paddle} from "./Paddle.js";
+import {ScoreCounter} from "./ScoreCounter.js";
 
 export class GameLoader {
     private constructor() {
     }
 
-    public static loadGame(gameBoard: GameBoard, leftPlayer: Paddle, rightPlayer: Paddle, gameBall: Ball): void {
+    public static loadGame(gameBoard: GameBoard, leftPlayer: Paddle, rightPlayer: Paddle, gameBall: Ball, scoreCounter: ScoreCounter): void {
         let intervalStarter = setTimeout(() => {
             gameBoard.clearGameBoard();
             gameBoard.drawPlayerPaddles(leftPlayer, rightPlayer);
             gameBall.moveBall();
             gameBoard.drawBallOnBoard(gameBall);
-            gameBall.checkBallsCollision(gameBoard, leftPlayer, rightPlayer);
-            GameLoader.loadGame(gameBoard, leftPlayer, rightPlayer, gameBall);
+            gameBall.checkBallsCollision(gameBoard, leftPlayer, rightPlayer, scoreCounter);
+            GameLoader.loadGame(gameBoard, leftPlayer, rightPlayer, gameBall, scoreCounter);
         }, 12);
     }
 
