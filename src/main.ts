@@ -1,20 +1,21 @@
 import {GameBoard} from "./GameBoard.js";
 import {Paddle} from "./Paddle.js";
+import {PaddleColor, Sizes} from "./PaddleSettings.js";
 
-const gameBoardId : HTMLCanvasElement | null = document.querySelector(".gameBoard");
+const gameBoardId: HTMLCanvasElement | null = document.querySelector(".gameBoard");
 
 if (gameBoardId === null) {
     throw new Error("Game Board Id is null");
 }
 
-const context : CanvasRenderingContext2D | null = gameBoardId.getContext("2d");
+const context: CanvasRenderingContext2D | null = gameBoardId.getContext("2d");
 
 if (context === null) {
     throw new Error("Context is null");
 }
 
 let gameBoard = new GameBoard(gameBoardId, context);
-let leftPlayer = new Paddle("red", 25, 100, 0, 0);
-let rightPlayer = new Paddle("blue", 25, 100, gameBoard.getWidth() - 25, gameBoard.getHeight() - 100);
+let leftPlayer = new Paddle(PaddleColor.LEFT_COLOR, Sizes.WIDTH, Sizes.HEIGHT, Sizes.LEFT_X, Sizes.LEFT_Y);
+let rightPlayer = new Paddle(PaddleColor.RIGHT_COLOR, Sizes.WIDTH, Sizes.HEIGHT, Sizes.RIGHT_X, Sizes.RIGHT_Y);
 
 gameBoard.drawPlayerPaddles(leftPlayer, rightPlayer);

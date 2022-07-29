@@ -1,3 +1,4 @@
+import { PaddleColor } from "./PaddleSettings.js";
 var GameBoard = /** @class */ (function () {
     function GameBoard(gameBoardId, context) {
         this.gameBoardId = gameBoardId;
@@ -8,7 +9,7 @@ var GameBoard = /** @class */ (function () {
     GameBoard.prototype.clearGameBoard = function () {
     };
     GameBoard.prototype.drawPlayerPaddles = function (leftPlayer, rightPlayer) {
-        this.context.strokeStyle = "black";
+        this.context.strokeStyle = PaddleColor.BORDER_COLOR;
         this.context.fillStyle = leftPlayer.getColor();
         this.context.fillRect(leftPlayer.getPositionX(), leftPlayer.getPositionY(), leftPlayer.getWidth(), leftPlayer.getHeight());
         this.context.strokeRect(leftPlayer.getPositionX(), leftPlayer.getPositionY(), leftPlayer.getWidth(), leftPlayer.getHeight());
