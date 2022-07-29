@@ -16,6 +16,6 @@ export enum Sizes {
 export enum PaddleColor {
     LEFT_COLOR = "RED",
     RIGHT_COLOR = "BLUE",
-    BORDER_COLOR = "black",
+    BORDER_COLOR = "BLACK",
 }
 

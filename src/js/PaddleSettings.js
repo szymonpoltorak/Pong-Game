@@ -15,6 +15,6 @@ export var PaddleColor;
 (function (PaddleColor) {
     PaddleColor["LEFT_COLOR"] = "RED";
     PaddleColor["RIGHT_COLOR"] = "BLUE";
-    PaddleColor["BORDER_COLOR"] = "black";
+    PaddleColor["BORDER_COLOR"] = "BLACK";
 })(PaddleColor || (PaddleColor = {}));
 //# sourceMappingURL=PaddleSettings.js.map
