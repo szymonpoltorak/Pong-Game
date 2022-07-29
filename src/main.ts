@@ -25,8 +25,16 @@ let gameBall = new Ball(gameBoard);
 const scoreCounter = new ScoreCounter();
 let intervalStarter: number = 0;
 
-GameLoader.insertBall(gameBall, gameBoard);
-GameLoader.loadGame(gameBoard, leftPlayer, rightPlayer, gameBall, scoreCounter, intervalStarter);
+const startButton = document.querySelector(".startButton");
+
+if (startButton === null) {
+    throw new Error("Start button is null");
+}
+
+startButton.addEventListener("click", () => {
+    GameLoader.insertBall(gameBall, gameBoard);
+    GameLoader.loadGame(gameBoard, leftPlayer, rightPlayer, gameBall, scoreCounter, intervalStarter);
+});
 
 window.addEventListener("keydown", event => {
     const pressedKey: string = event.key;
@@ -37,12 +45,12 @@ window.addEventListener("keydown", event => {
 
 const resetButton = document.querySelector(".resetButton");
 
-if (resetButton === null){
+if (resetButton === null) {
     throw new Error("Reset buttons is null");
 }
 
 resetButton.addEventListener("click", () => {
-   const handler = new Handler();
+    const handler = new Handler();
 
-   handler.resetGame();
+    handler.resetGame();
 });
